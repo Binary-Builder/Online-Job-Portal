@@ -1,0 +1,84 @@
+{% load static %}
+{% block body %}
+{% include 'recruiter_navigation.html' %}
+
+<hr>
+<form class="container mt-5" onsubmit="return checkpass();" name="signup" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label>Job Title</label>
+        <input type="text" class="form-control" name="jobtitle" placeholder="Enter Job Title" required>
+    </div>
+
+</div>
+
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label>Start Date</label>
+        <input type="date" class="form-control" name="startdate" required>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label>End Date</label>
+        <input type="date" class="form-control" name="enddate" required>
+    </div>
+</div>
+
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Salary(Per month)</label>
+            <input type="text" class="form-control" name="salary" required>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label>Company Logo</label>
+            <input type="file" class="form-control" name="logo" required>
+        </div>
+    </div>
+
+
+ <div class="form-row">
+    <div class="form-group col-md-12">
+        <label>Experience (in years)</label>
+        <input type="text" class="form-control" name="experience" placeholder="Enter Experience" required>
+    </div>
+</div>
+
+
+    <div class="form-row">
+    <div class="form-group col-md-12">
+        <label>Skills</label>
+        <input type="text" class="form-control" name="skills" placeholder="Enter skills required" required>
+    </div>
+</div>
+
+
+<div class="form-row">
+    <div class="form-group col-md-12">
+        <label>Description</label>
+        <textarea class="form-control" name="description" required></textarea>
+    </div>
+</div>
+
+<input type="submit" value="Submit" class="btn btn-primary">
+
+</form>
+
+{% if error == "no" %}
+<script>
+    alert("Signup successful");
+    window.location = ('{% url 'recruiter_login' %}')
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Something went wrong,Try again...");
+</script>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% load static %}
+{% block body %}
+{% include 'navigation.html' %}
+
+<hr>
+<form class="container mt-5" method="post">
+    {% csrf_token %}
+    <label><b>UserName</b></label>
+    <input type="text" class="form-control" name="uname" placeholder="Enter UserName">
+
+    <label><b>Password</b></label>
+    <input type="password" class="form-control" name="pwd" placeholder="Enter Password">
+
+    <input type="submit" class="btn btn-primary">
+</form>
+
+{% if error == "no" %}
+<script>
+    alert("Login successful");
+    window.location = ('{% url 'admin_home' %}')
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Something went wrong,Try again...");
+</script>
+{% endif %}
+
+{% endblock %}

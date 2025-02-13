@@ -1,0 +1,105 @@
+{% load static %}
+{% block body %}
+{% include 'navigation.html' %}
+
+
+<script>
+    function checkpass()
+    {
+    if(document.signup.pwd.value!= document.signup.cpwd.value)
+    {
+    alert('Password and Repeat Password field does not match');
+    document.signup.cpwd.focus();
+    return false;
+    }
+    return true;
+    }
+</script>
+
+
+<hr>
+<form class="container mt-5" onsubmit="return checkpass();" name="signup" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label>First Name</label>
+        <input type="text" class="form-control" name="fname" placeholder="Enter First Name" required>
+    </div>
+    <div class="form-group col-md-6">
+        <label>Last Name</label>
+        <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" required>
+    </div>
+</div>
+
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label>Contact</label>
+        <input type="text" class="form-control" name="contact" placeholder="Enter Contact Number" required>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label>Company</label>
+        <input type="text" class="form-control" name="company" placeholder="Enter Company name" required>
+    </div>
+</div>
+
+
+ <div class="form-row">
+    <div class="form-group col-md-12">
+        <label>Email ID</label>
+        <input type="text" class="form-control" name="email" placeholder="Enter Email Address" required>
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label>Password</label>
+        <input type="password" class="form-control" name="pwd" placeholder="Enter Password">
+    </div>
+    <div class="form-group col-md-6">
+        <label>Confirm Password</label>
+        <input type="password" class="form-control" name="cpwd" placeholder="Enter Password Again">
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label>Gender</label>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInLine1" name="gender" class="custom-control-input" value="Male">
+                    <label class="custom-control-label" for="customRadioInLine1">Male</label>
+            </div>
+        <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInLine2" name="gender" class="custom-control-input" value="Female">
+                    <label class="custom-control-label" for="customRadioInLine2">Female</label>
+            </div>
+
+    </div>
+    <div class="form-group col-md-6">
+        <label>Image</label>
+        <input type="file" class="form-control" name="image">
+    </div>
+</div>
+
+<input type="submit" value="Submit" class="btn btn-primary">
+
+</form>
+
+{% if error == "no" %}
+<script>
+    alert("Signup successful");
+    window.location = ('{% url 'recruiter_login' %}')
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Something went wrong,Try again...");
+</script>
+{% endif %}
+
+
+
+{% endblock %}
