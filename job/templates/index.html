@@ -4,8 +4,25 @@
 
 {% include 'navigation.html' %}
 
+<style>
+    .container{
+        max-width: 90% ;
+    }
+</style>
+
 <div class="container-fluid" style="margin-top:1%">
     <img src="{% static 'images/pehla.png' %}" style="height:450px;width:100%">
+</div>
+
+<!-- Midnight Blue Section -->
+<div class="container" style="background-color: midnightblue; height: 650px; margin-top: 2%; padding: 20px; text-align: center;">
+    <h1 class="text-white">~~~~~| OUR PLACED STUDENTS |~~~~~</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+            <img src="{% static 'images/f.png' %}" style="width: 100%; margin-top: 5%; height: 200px; border-radius: 50%;">
+        </div> 
+    </div>
 </div>
 
 {% endblock %}
